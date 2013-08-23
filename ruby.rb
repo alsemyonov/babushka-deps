@@ -17,6 +17,10 @@ meta :rbenv do
     File.join(rbenv_path, 'plugins', name)
   end
 
+  def rbenv_ruby_path(version)
+    File.join(rbenv_path, 'versions', version, 'bin', 'ruby')
+  end
+
   template do
     requires 'git.bin'
 
@@ -60,9 +64,18 @@ dep 'rbenv init.append', :profile do
   line 'eval "$(rbenv init -)"'
 end
 
+dep 'ruby.rbenv', :version do
+  requires 'rbenv'
+
+  version.default!('2.0.0-p247')
+
+  met? { File.executable?(rbenv_ruby_path(version)) }
+  meet { shell("rbenv install #{version}") }
+end
+
 dep 'rbenv', :profile do
-  on(:linux) { profile.default('~/.profile') }
-  on(:osx) { profile.default('~/.bash_profile') }
+  on(:linux) { profile.default!('~/.profile') }
+  on(:osx) { profile.default!('~/.bash_profile') }
 
   requires 'rbenv installed.rbenv'
   requires 'ruby-build installed.rbenv'
