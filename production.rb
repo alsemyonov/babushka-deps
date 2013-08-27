@@ -6,7 +6,6 @@
 ################################################
 
 dep 'production apps installed' do
-  requires 'ruby production'
   requires 'nginx.bin'
   requires 'rabbitmq.bin'
   requires 'redis.bin'
