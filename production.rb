@@ -5,13 +5,17 @@
 # Author: Alexander Semyonov <al@semyonov.us>  #
 ################################################
 
-dep 'production apps installed' do
+dep 'production apps installed using sudo' do
   requires 'nginx.bin'
   requires 'rabbitmq.bin'
   requires 'redis.bin'
   requires 'postgresql.bin'
   requires 'mongodb.bin'
   requires 'nodejs.bin'
+end
+
+dep 'production apps installed' do
+  run { shell("sudo -i babushka 'production apps installed using sudo'") }
 end
 
 dep 'production ruby', :version do
