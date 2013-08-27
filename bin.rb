@@ -5,7 +5,9 @@
 # Author: Alexander Semyonov <al@semyonov.us>  #
 ################################################
 
-dep 'nginx.bin'
+dep 'nginx.bin' do
+  on(:linux) { installs 'nginx-full' }
+end
 dep 'postgresql.bin' do
   provides 'pg_config', 'psql'
 end
