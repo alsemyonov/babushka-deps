@@ -6,8 +6,7 @@
 ################################################
 
 dep 'production apps installed' do
-  requires 'ruby with common gems'
-  requires 'ruby.rbenv'
+  requires 'ruby production'
   requires 'nginx.bin'
   requires 'rabbitmq.bin'
   requires 'redis.bin'
@@ -16,6 +15,16 @@ dep 'production apps installed' do
   requires 'nodejs.bin'
 end
 
+dep 'production ruby', :version do
+  version.default!('2.0.0-p247')
+
+  requires 'ruby.rbenv'.with(version)
+  requires 'bundler.gem'
+  requires 'foreman.gem'
+  requires 'gem-browse.gem'
+end
+
 dep 'production' do
+  requires 'production ruby'
   requires 'production apps installed'
 end

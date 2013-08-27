@@ -10,21 +10,21 @@ meta :rbenv do
   accepts_value_for :path
 
   def rbenv_path
-    File.expand_path('~/.rbenv')
+    '~/.rbenv'.p
   end
 
   def rbenv_plugin_path(name)
-    File.join(rbenv_path, 'plugins', name)
+    rbenv_path / 'plugins' / name
   end
 
   def rbenv_ruby_path(version)
-    File.join(rbenv_path, 'versions', version, 'bin', 'ruby')
+    rbenv_path / 'versions' / version / 'bin' / 'ruby'
   end
 
   template do
     requires 'git.bin'
 
-    met? { File.directory?(path) }
+    met? { path.directory? }
     meet { git(source, to: path) }
   end
 end
@@ -74,13 +74,6 @@ dep 'rbenv init.append', :profile do
   line 'eval "$(rbenv init -)"'
 end
 
-dep 'ruby.rbenv', :version do
-  requires 'rbenv'
-
-  met? { File.executable?(rbenv_ruby_path(version)) }
-  meet { shell("rbenv install #{version}") }
-end
-
 dep 'rbenv', :profile do
   on(:linux) { profile.default!('~/.profile') }
   on(:osx) { profile.default!('~/.bash_profile') }
@@ -96,26 +89,29 @@ dep 'rbenv', :profile do
   requires 'rbenv init.append'.with(profile)
 end
 
-## Gems
+## Ruby
 
+dep 'ruby.rbenv', :version do
+  requires 'rbenv'
+
+  met? { rbenv_ruby_path(version).executable? }
+  meet { shell("rbenv install #{version}") }
+end
+
+dep 'ruby global.rbenv', :version do
+  requires 'ruby.rbenv'.with(version)
+
+  met? { (rbenv_path / 'version').grep version }
+  meet { shell("rbenv global #{version}") }
+end
+
+## Gems
 dep('bundler.gem') { provides 'bundle' }
-dep('foreman.gem')
 dep('rubygems-bundler.gem') { provides 'rubygems-bundler-uninstaller' }
 dep('gem-browse.gem') { provides nil }
 dep('gem-ctags.gem') do
   requires 'ctags.bin'
   provides nil
 end
-
-## Packs
-
-
-dep 'ruby with common gems', :version do
-  version.default!('2.0.0-p247')
-
-  requires 'ruby.rbenv'.with(version)
-  requires 'bundler.gem'
-  requires 'foreman.gem'
-  requires 'gem-browse.gem'
-  requires 'gem-ctags.gem'
-end
+dep 'foreman.gem'
+dep 'ripl.gem'

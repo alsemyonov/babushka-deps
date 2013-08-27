@@ -6,7 +6,6 @@
 ################################################
 
 dep 'development apps installed' do
-  requires 'ruby with common gems'
   requires 'nginx.bin'
   requires 'rabbitmq.bin'
   requires 'redis.bin'
@@ -16,6 +15,17 @@ dep 'development apps installed' do
   requires 'nodejs.bin'
 end
 
+dep 'development ruby', :version do
+  version.default!('2.0.0-p247')
+
+  requires 'ruby global.rbenv'.with(version)
+  requires 'bundler.gem'
+  requires 'foreman.gem'
+  requires 'gem-browse.gem'
+  requires 'gem-ctags.gem'
+end
+
 dep 'development' do
+  requires 'development ruby'
   requires 'development apps installed'
 end
