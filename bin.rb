@@ -34,3 +34,4 @@ dep 'mongodb.bin' do
     installs 'mongodb-10gen'
   end
 end
+dep 'ctags.bin'

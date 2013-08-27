@@ -77,8 +77,6 @@ end
 dep 'ruby.rbenv', :version do
   requires 'rbenv'
 
-  version.default!('2.0.0-p247')
-
   met? { File.executable?(rbenv_ruby_path(version)) }
   meet { shell("rbenv install #{version}") }
 end
@@ -96,4 +94,28 @@ dep 'rbenv', :profile do
   on(:osx) { requires 'rbenv-readline installed.rbenv' }
   requires 'rbenv PATH.append'.with(profile)
   requires 'rbenv init.append'.with(profile)
+end
+
+## Gems
+
+dep('bundler.gem') { provides 'bundle' }
+dep('foreman.gem')
+dep('rubygems-bundler.gem') { provides 'rubygems-bundler-uninstaller' }
+dep('gem-browse.gem') { provides nil }
+dep('gem-ctags.gem') do
+  requires 'ctags.bin'
+  provides nil
+end
+
+## Packs
+
+
+dep 'ruby with common gems', :version do
+  version.default!('2.0.0-p247')
+
+  requires 'ruby.rbenv'.with(version)
+  requires 'bundler.gem'
+  requires 'foreman.gem'
+  requires 'gem-browse.gem'
+  requires 'gem-ctags.gem'
 end
