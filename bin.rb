@@ -7,7 +7,7 @@
 
 dep 'nginx.bin'
 dep 'postgresql.bin' do
-  provides 'pg_ctl', 'pg_config', 'psql'
+  provides 'pg_config', 'psql'
 end
 dep 'mysql.bin' do
   provides 'mysqld', 'mysql'
