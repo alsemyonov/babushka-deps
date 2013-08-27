@@ -14,7 +14,7 @@ dep 'production apps installed using sudo' do
   requires 'nodejs.bin'
 end
 
-dep 'production apps installed' do
+dep 'production apps installed', template: :task do
   run { shell("sudo -i babushka 'production apps installed using sudo'") }
 end
 
