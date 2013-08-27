@@ -54,6 +54,16 @@ dep 'rbenv-update installed.rbenv' do
   path(rbenv_plugin_path('rbenv-update'))
 end
 
+dep 'rbenv-aliases installed.rbenv' do
+  source('https://github.com/tpope/rbenv-aliases.git')
+  path(rbenv_plugin_path('rbenv-aliases'))
+end
+
+dep 'rbenv-communal-gems installed.rbenv' do
+  source('https://github.com/tpope/rbenv-communal-gems.git')
+  path(rbenv_plugin_path('rbenv-communal-gems'))
+end
+
 dep 'rbenv PATH.append', :profile do
   file profile
   line 'export PATH="$HOME/.rbenv/bin:$PATH"'
@@ -81,6 +91,8 @@ dep 'rbenv', :profile do
   requires 'ruby-build installed.rbenv'
   requires 'rbenv-gem-rehash installed.rbenv'
   requires 'rbenv-update installed.rbenv'
+  requires 'rbenv-aliases installed.rbenv'
+  requires 'rbenv-communal-gems installed.rbenv'
   on(:osx) { requires 'rbenv-readline installed.rbenv' }
   requires 'rbenv PATH.append'.with(profile)
   requires 'rbenv init.append'.with(profile)
