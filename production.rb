@@ -17,7 +17,7 @@ end
 dep 'production apps installed.task' do
   run do
     system("sudo -i babushka 'production apps installed using sudo'")
-    shell("sudo chown $USER \"$(rbenv root)/shims\"")
+    shell("sudo chown -R $USER \"$(rbenv root)\"")
   end
 end
 
