@@ -14,8 +14,11 @@ dep 'production apps installed using sudo' do
   requires 'nodejs.bin'
 end
 
-dep 'production apps installed', template: :task do
-  run { shell("sudo -i babushka 'production apps installed using sudo'") }
+dep 'production apps installed.task' do
+  run do
+    system("sudo -i babushka 'production apps installed using sudo'")
+    shell("sudo chown $USER \"$(rbenv root)/shims\"")
+  end
 end
 
 dep 'production ruby', :version do
@@ -29,5 +32,5 @@ end
 
 dep 'production' do
   requires 'production ruby'
-  requires 'production apps installed'
+  requires 'production apps installed.task'
 end
