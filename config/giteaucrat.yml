@@ -1,8 +1,8 @@
 ---
 commit_keyword: "#giteaucrat"
 copyright_owner: Alexander Semyonov
-copyright_format: "\xC2\xA9 %{owner}, %{years}, %{license}"
+copyright_format: "© %{owner}, %{years}, %{license}"
 license: MIT
 include_encoding: true
 patterns:
-- **/*.rb
+- "**/*.rb"
