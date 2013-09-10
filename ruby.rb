@@ -25,7 +25,7 @@ meta :rbenv do
     requires 'git.bin'
 
     met? { path.directory? }
-    meet { git(source, to: path) }
+    meet { git(source, :to => path) }
   end
 end
 
