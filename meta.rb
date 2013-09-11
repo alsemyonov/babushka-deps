@@ -18,7 +18,7 @@ meta :append do
   end
 
   def append_file!
-    File.open(file_name, 'w') { |f| f.write(file_contents << "#{line}\n").join('')) }
+    File.open(file_name, 'w') { |f| f.write(file_contents << "#{line}\n").join('') }
   end
 
   template do
