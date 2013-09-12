@@ -10,19 +10,19 @@ meta :append do
   accepts_value_for :line
 
   def file_name
-    File.expand_path(file)
+    file.p
   end
 
   def file_contents
-    File.readlines(file_name)
+    file_name.read.split("\n")
   end
 
   def append_file!
-    File.open(file_name, 'w') { |f| f.write((file_contents << "#{line}\n").join('')) }
+    file_name.append(line)
   end
 
   template do
-    met? { file_contents.any? { |file_line| file_line =~ /#{Regexp.escape(line)}/ } }
+    met? { !file_contents.grep(/#{Regexp.escape(line)}/).empty? }
     meet { append_file! }
   end
 end
