@@ -115,3 +115,5 @@ dep('gem-ctags.gem') do
 end
 dep 'foreman.gem'
 dep 'ripl.gem'
+dep 'thor.gem'
+dep 'yard.gem'

@@ -20,9 +20,11 @@ dep 'development ruby', :version do
 
   requires 'ruby global.rbenv'.with(version)
   requires 'bundler.gem'
+  requires 'thor.gem'
+  requires 'yard.gem'
   requires 'foreman.gem'
   requires 'gem-browse.gem'
-  requires 'gem-ctags.gem'
+  #requires 'gem-ctags.gem'
 end
 
 dep 'development' do
