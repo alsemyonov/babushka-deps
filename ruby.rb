@@ -100,6 +100,7 @@ end
 
 dep 'ruby global.rbenv', :version do
   requires 'ruby.rbenv'.with(version)
+  version.default!(File.read(File.expand_path('../.ruby-version', __FILE__)).chomp)
 
   met? { (rbenv_path / 'version').grep version }
   meet { shell("rbenv global #{version}") }

@@ -22,8 +22,6 @@ dep 'production apps installed.task' do
 end
 
 dep 'production ruby', :version do
-  version.default!('2.0.0-p247')
-
   requires 'ruby.rbenv'.with(version)
   requires 'bundler.gem'
   requires 'foreman.gem'

@@ -9,15 +9,12 @@ dep 'development apps installed' do
   requires 'nginx.bin'
   requires 'rabbitmq.bin'
   requires 'redis.bin'
-  requires 'mysql.bin'
   requires 'postgresql.bin'
   requires 'mongodb.bin'
   requires 'nodejs.bin'
 end
 
 dep 'development ruby', :version do
-  version.default!('2.0.0-p247')
-
   requires 'ruby global.rbenv'.with(version)
   requires 'bundler.gem'
   requires 'thor.gem'
