@@ -83,7 +83,6 @@ dep 'rbenv', :profile do
   requires 'rbenv-gem-rehash installed.rbenv'
   requires 'rbenv-update installed.rbenv'
   requires 'rbenv-aliases installed.rbenv'
-  requires 'rbenv-communal-gems installed.rbenv'
   on(:osx) { requires 'rbenv-readline installed.rbenv' }
   requires 'rbenv PATH.append'.with(profile)
   requires 'rbenv init.append'.with(profile)
