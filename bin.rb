@@ -16,7 +16,7 @@ dep 'mysql.bin' do
   on(:linux) { installs 'mysql-server' }
 end
 dep 'rabbitmq.bin' do
-  provides 'rabbitmqctl'
+  provides 'rabbitmqctl', 'rabbitmq-server'
   on(:linux) { installs 'rabbitmq-server' }
 end
 dep 'ejabberd.bin' do
@@ -43,3 +43,4 @@ dep 'mongodb.bin' do
   end
 end
 dep 'ctags.bin'
+dep 'node.bin'
