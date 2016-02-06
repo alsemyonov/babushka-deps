@@ -18,9 +18,7 @@ meta :append do
   end
 
   def append_file!
-    unless file_name.read =~ /\n\Z/
-      file_name.append("\n")
-    end
+    file_name.append("\n") unless file_name.read =~ /\n\Z/
     file_name.append("#{line}\n")
   end
 

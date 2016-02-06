@@ -21,10 +21,18 @@ dep 'development ruby', :version do
   requires 'yard.gem'
   requires 'foreman.gem'
   requires 'gem-browse.gem'
-  #requires 'gem-ctags.gem'
+  # requires 'gem-ctags.gem'
+end
+
+dep 'development node', :version do
+  requires 'node'
+  requires 'bower'
+  requires 'less2sass'
+  requires 'sassdoc'
 end
 
 dep 'development' do
+  requires 'development node'
   requires 'development ruby'
   requires 'development apps installed'
 end

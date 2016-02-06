@@ -25,7 +25,7 @@ end
 dep 'redis.bin' do
   provides 'redis-cli', 'redis-server'
   on(:linux) do
-    requires 'ppa'.with(:spec => 'ppa:rwky/redis')
+    requires 'ppa'.with(spec: 'ppa:rwky/redis')
     installs 'redis-server'
   end
 end
@@ -33,11 +33,11 @@ dep 'mongodb.bin' do
   provides 'mongod', 'mongo'
   on(:linux) do
     requires 'apt source'.with(
-      :uri => 'http://downloads-distro.mongodb.org/repo/ubuntu-upstart',
-      :uri_matcher => Regexp.escape('http://downloads-distro.mongodb.org/repo/ubuntu-upstart'),
-      :release => 'dist',
-      :repo => '10gen',
-      :should_update => 'yes'
+      uri: 'http://downloads-distro.mongodb.org/repo/ubuntu-upstart',
+      uri_matcher: Regexp.escape('http://downloads-distro.mongodb.org/repo/ubuntu-upstart'),
+      release: 'dist',
+      repo: '10gen',
+      should_update: 'yes'
     )
     installs 'mongodb-10gen'
   end

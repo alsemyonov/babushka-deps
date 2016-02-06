@@ -5,18 +5,12 @@
 # Author: Alexander Semyonov <al@semyonov.us>  #
 ################################################
 
-
-dep 'database migrated', :env, :template => 'task' do
-  run {
-    shell "bundle exec rake db:migrate RAILS_ENV=#{env}"
-  }
+dep 'database migrated', :env, template: 'task' do
+  run { shell "bundle exec rake db:migrate RAILS_ENV=#{env}" }
 end
 
-
-dep 'assets precompiled', :env, :template => 'task' do
-  run {
-    shell "bundle exec rake assets:precompile RAILS_GROUPS=assets RAILS_ENV=#{env}"
-  }
+dep 'assets precompiled', :env, template: 'task' do
+  run { shell "bundle exec rake assets:precompile RAILS_GROUPS=assets RAILS_ENV=#{env}" }
 end
 
 dep 'rails update', :path, :env do
