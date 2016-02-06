@@ -21,14 +21,18 @@ dep 'development ruby', :version do
   requires 'yard.gem'
   requires 'foreman.gem'
   requires 'gem-browse.gem'
-  # requires 'gem-ctags.gem'
+  requires 'html2slim.gem'
+  requires 'pry.gem'
+  requires 'gem-ctags.gem'
 end
 
 dep 'development node', :version do
-  requires 'node'
-  requires 'bower'
-  requires 'less2sass'
-  requires 'sassdoc'
+  requires 'bower.npm'
+  requires 'less2sass.npm'
+  requires 'sassdoc.npm'
+  requires 'mehserve.npm'
+  requires 'ember-cli.npm'
+  requires 'phantomjs.npm'
 end
 
 dep 'development' do

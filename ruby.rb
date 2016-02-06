@@ -113,7 +113,9 @@ dep('gem-ctags.gem') do
   requires 'ctags.bin'
   provides nil
 end
-dep 'foreman.gem'
-dep 'ripl.gem'
-dep 'thor.gem'
-dep 'yard.gem'
+dep('foreman.gem') { provides 'foreman' }
+dep('ripl.gem') { provides 'ripl' }
+dep('thor.gem') { provides 'thor' }
+dep('yard.gem') { provides 'yard', 'yardoc' }
+dep('pry.gem') { provides 'pry' }
+dep('html2slim.gem') { provides 'html2slim', 'erb2slim' }
