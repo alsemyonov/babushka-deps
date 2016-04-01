@@ -10,8 +10,6 @@ dep 'production apps installed using sudo' do
   requires 'rabbitmq.bin'
   requires 'redis.bin'
   requires 'postgresql.bin'
-  requires 'mongodb.bin'
-  requires 'nodejs.bin'
 end
 
 dep 'production apps installed.task' do
@@ -21,14 +19,8 @@ dep 'production apps installed.task' do
   end
 end
 
-dep 'production ruby', :version do
-  requires 'ruby.rbenv'.with(version)
-  requires 'bundler.gem'
-  requires 'foreman.gem'
-  requires 'gem-browse.gem'
-end
-
 dep 'production' do
   requires 'production ruby'
+  requires 'production node'
   requires 'production apps installed.task'
 end
