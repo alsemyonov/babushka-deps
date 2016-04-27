@@ -24,10 +24,7 @@ dep 'ejabberd.bin' do
 end
 dep 'redis.bin' do
   provides 'redis-cli', 'redis-server'
-  on(:linux) do
-    requires 'ppa'.with(spec: 'ppa:rwky/redis')
-    installs 'redis-server'
-  end
+  on(:linux) { installs 'redis-server' }
 end
 dep 'mongodb.bin' do
   provides 'mongod', 'mongo'
