@@ -48,7 +48,9 @@ dep('phantomjs') { requires 'phantomjs-prebuilt.npm' }
 
 # http://csscomb.com/
 # CSS Code Style
-dep('csscomb.npm') { provides 'csscomb' }
+dep('csscomb.npm') do
+  # provides 'csscomb'
+end
 
 # http://jscs.info/
 # JavaScript Code Style
@@ -60,7 +62,9 @@ dep('jshint.npm') { provides 'jshint' }
 
 # http://www.jslint.com/
 # The JavaScript Code Quality Tool
-dep('jslint.npm') { provides 'jslint' }
+dep('jslint.npm') do
+  # provides 'jslint'
+end
 
 # http://eslint.org/
 # The pluggable linting utility for JavaScript and JSX
