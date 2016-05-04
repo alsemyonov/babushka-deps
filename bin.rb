@@ -5,6 +5,8 @@
 # Author: Alexander Semyonov <al@semyonov.us>  #
 ################################################
 
+## Binaries
+
 dep 'nginx.bin' do
   on(:linux) { installs 'nginx-full' }
 end
@@ -41,3 +43,44 @@ dep 'mongodb.bin' do
 end
 dep 'ctags.bin'
 dep 'node.bin'
+
+## Libraries
+
+dep 'curl.lib' do
+  installs {
+    on :osx, [] # It's provided by the system.
+    on :apt, 'libcurl4-openssl-dev'
+    otherwise 'curl'
+  }
+end
+dep 'ffi.lib' do
+  installs 'libffi-dev'
+end
+dep 'openssl.lib' do
+  installs {
+    via :apt, 'libssl-dev'
+    via :yum, 'openssl-devel'
+    otherwise 'openssl'
+  }
+end
+dep 'readline.lib' do
+  installs {
+    on :lenny, 'libreadline5-dev'
+    via :apt, 'libreadline6-dev'
+    otherwise 'readline'
+  }
+end
+dep 'yaml.lib' do
+  installs {
+    via :apt, 'libyaml-dev'
+    otherwise 'libyaml'
+  }
+end
+dep 'zlib.lib' do
+  installs {
+    via :apt, 'zlib1g-dev'
+    via :yum, 'zlib-devel'
+    via :brew, []
+    otherwise 'zlib'
+  }
+end
