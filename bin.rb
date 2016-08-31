@@ -54,7 +54,10 @@ dep 'curl.lib' do
   }
 end
 dep 'ffi.lib' do
-  installs 'libffi-dev'
+  installs {
+    on :apt, 'libffi-dev'
+    otherwise 'libffi'
+  }
 end
 dep 'openssl.lib' do
   installs {
@@ -62,6 +65,14 @@ dep 'openssl.lib' do
     via :yum, 'openssl-devel'
     otherwise 'openssl'
   }
+end
+dep 'openssl' do
+  requires 'openssl.lib'
+  requires 'openssl bundle config.task'
+end
+dep 'openssl bundle config.task' do
+  requires 'bundler.gem'
+  task { run 'bundle config build.eventmachine --with-cppflags=-I$(brew --prefix openssl)/include' }
 end
 dep 'readline.lib' do
   installs {
